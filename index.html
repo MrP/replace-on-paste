@@ -2,14 +2,23 @@
 <html>
 
     <head>
+        <style>
+            #flags {
+                width: 30px;
+            }
+            #textarea {
+                width: 100%;
+                height: 500px;
+            }
+        </style>
     </head>
 
     <body>
 
+        <p>Enter a regular expression in the pattern input, the string to replace it with in the replacement input field, and any flags in the flags input.</p>
+        <p>Then, copy the text you want to modify, click on the textarea below, paste it (Ctrl+v or cmd+c).  The regex is automatically applied, and all the text automatically selected.  Just copy it again (Ctrl+c or cmd+c) an of you go.</p>
         <p>
-            <input id="regex" placeholder="pattern">            <input id="flags" placeholder="flags (gim)" value="g">
-
-            <input id="replacement" placeholder="replacement">
+            s/<input id="regex" placeholder="pattern">/<input id="replacement" placeholder="replacement">/<input id="flags" placeholder="flags (gim)" value="g">
         </p>
         <textarea id="textarea">
 
