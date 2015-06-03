@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+    </head>
+
+    <body>
+
+        <p>
+            <input id="regex" placeholder="pattern">            <input id="flags" placeholder="flags (gim)" value="g">
+
+            <input id="replacement" placeholder="replacement">
+        </p>
+        <textarea id="textarea">
+
+        </textarea>
+
+        <script>
+            var textarea = document.getElementById('textarea');
+            var regexInput = document.getElementById('regex');
+            var flagsInput = document.getElementById('flags');
+            var replacementInput = document.getElementById('replacement');
+            var inputHandler = function (event) {
+                var regex = new RegExp(regexInput.value, flagsInput.value);
+                textarea.removeEventListener('input', inputHandler);
+                textarea.value = textarea.value.replace(regex, replacementInput.value);
+                textarea.select();
+                textarea.addEventListener('input', inputHandler);
+            };
+
+            textarea.addEventListener('input', inputHandler);
+        </script>
+    </body>
+
+</html>
