@@ -17,24 +17,50 @@
     </head>
 
     <body>
-
+        <template id="regex-template">
+            <span class="regex-group">
+                s/<input class="regex" placeholder="pattern">/<input class="replacement" placeholder="replacement">/<input class="flags" placeholder="flags (gim)" value="g"> 
+            </span>
+            <br>
+        </template>
         <p>Enter a regular expression in the pattern input, the string to replace it with in the replacement input field, and any flags in the flags input.</p>
         <p>Then, copy the text you want to modify into your clipboard, click on the textarea below, paste it.  The regex is automatically applied, and all the text automatically selected.  Just copy it again and of you go.  Do it all again.</p>
         <p>Drop me a line if you find this useful: <a href="mailto:victor.rodriguez.gil@gmail.com">victor.rodriguez.gil@gmail.com</a></p>
-        <p>
-            s/<input id="regex" placeholder="pattern">/<input id="replacement" placeholder="replacement">/<input id="flags" placeholder="flags (gim)" value="g">
+        <p id="regexes">
         </p>
+        <p>
+            <button id="add-regex">Add rule</button>
+        </p>
+        <p>
         <textarea id="textarea"></textarea>
+        </p>
 
         <script>
+            var regexTemplate = document.getElementById('regex-template');
             var textarea = document.getElementById('textarea');
-            var regexInput = document.getElementById('regex');
-            var flagsInput = document.getElementById('flags');
-            var replacementInput = document.getElementById('replacement');
+            var addRegexButton = document.getElementById('add-regex');
+            var regexes = document.getElementById('regexes');
+            var addRegexHandler = function () {
+                var clone = document.importNode(regexTemplate.content, true);
+                regexes.appendChild(clone);
+            };
+            addRegexHandler();
+            addRegexButton.addEventListener('click', addRegexHandler);
             var inputHandler = function (event) {
-                var regex = new RegExp(regexInput.value, flagsInput.value);
+                var regexInput,
+                    flagsInput,
+                    replacementInput,
+                    regex,
+                    i,
+                    regexes = document.querySelectorAll('.regex-group');
                 textarea.removeEventListener('input', inputHandler);
-                textarea.value = textarea.value.replace(regex, replacementInput.value);
+                for (i=0; i < regexes.length; i+=1) {
+                    regexInput = regexes[i].querySelector('.regex');
+                    flagsInput = regexes[i].querySelector('.flags');
+                    replacementInput = regexes[i].querySelector('.replacement');
+                    regex = new RegExp(regexInput.value, flagsInput.value);
+                    textarea.value = textarea.value.replace(regex, replacementInput.value);
+                }
                 textarea.select();
                 textarea.addEventListener('input', inputHandler);
             };
