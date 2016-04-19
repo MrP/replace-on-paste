@@ -11,6 +11,12 @@
                 flex-direction: column;
                 min-height: 100vh;
             }
+            input {
+                min-width: 50px;
+                max-width: 200px;
+                width: 33%;
+                border-width: 0 0 1px 0;
+            }
             .flags {
                 width: 30px;
             }
@@ -22,6 +28,9 @@
                 max-height: 500px;
                 flex: 1
             }
+            h1 {
+                margin-top: 0;
+            }
             p, 
             #regexes{
                 margin-top: 0;
@@ -30,6 +39,7 @@
     </head>
 
     <body>
+        <h1>Replace on paste</h1>
         <template id="regex-template">
             <div class="regex-group">
                 s/<input class="regex" placeholder="pattern">/<input class="replacement" placeholder="replacement">/<input class="flags" placeholder="flags (gim)" value="g"> 
