@@ -6,6 +6,7 @@
             body {
                 margin: 0 auto;
                 max-width: 600px;
+                padding: 0;
             }
             #flags {
                 width: 30px;
@@ -16,7 +17,8 @@
                 display: block;
                 height: 500px;
             }
-            p {
+            p, 
+            #regexes{
                 max-width: 600px;
             }
         </style>
@@ -24,10 +26,9 @@
 
     <body>
         <template id="regex-template">
-            <span class="regex-group">
+            <div class="regex-group">
                 s/<input class="regex" placeholder="pattern">/<input class="replacement" placeholder="replacement">/<input class="flags" placeholder="flags (gim)" value="g"> 
-            </span>
-            <br>
+            </div>
         </template>
         <p>Enter a regular expression in the pattern input, the string to 
         replace it with in the replacement input field, and any flags in the flags input.</p>
@@ -37,13 +38,12 @@
         <p>It all happens in your browser, your data doesn't leave your machine.</p>
         <p>Drop me a line if you find this useful: 
         <a href="mailto:victor.rodriguez.gil@gmail.com">victor.rodriguez.gil@gmail.com</a></p>
-        <p id="regexes">
-        </p>
+        <div id="regexes"></div>
         <p>
             <button id="add-regex">Add rule</button>
         </p>
         <p>
-        <textarea id="textarea"></textarea>
+            <textarea id="textarea"></textarea>
         </p>
 
         <script>
